@@ -284,6 +284,7 @@ mod tests {
     use bellperson::util_cs::{metric_cs::MetricCS, test_cs::TestConstraintSystem};
     use ff::Field;
     use filecoin_hashers::{poseidon::PoseidonHasher, Hasher};
+    use fr32::fr_into_bytes;
     use merkletree::store::StoreConfig;
     use pretty_assertions::assert_eq;
     use rand::SeedableRng;
@@ -294,7 +295,6 @@ mod tests {
         cache_key::CacheKey,
         compound_proof,
         drgraph::{BucketGraph, BASE_DEGREE},
-        fr32::fr_into_bytes,
         merkle::{BinaryMerkleTree, MerkleTreeTrait},
         proof::NoRequirements,
         test_helper::setup_replica,

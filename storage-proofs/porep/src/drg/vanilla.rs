@@ -3,6 +3,7 @@ use std::path::PathBuf;
 
 use anyhow::{ensure, Context};
 use filecoin_hashers::{Domain, HashFunction, Hasher, PoseidonArity};
+use fr32::bytes_into_fr_repr_safe;
 use generic_array::typenum;
 use merkletree::store::{ReplicaConfig, StoreConfig};
 use rayon::prelude::*;
@@ -14,7 +15,6 @@ use storage_proofs_core::{
     crypto::sloth,
     drgraph::Graph,
     error::Result,
-    fr32::bytes_into_fr_repr_safe,
     merkle::{
         create_base_lcmerkle_tree, create_base_merkle_tree, BinaryLCMerkleTree, BinaryMerkleTree,
         LCMerkleTree, MerkleProof, MerkleProofTrait, MerkleTreeTrait,
@@ -622,12 +622,12 @@ mod tests {
     use bellperson::bls::Fr;
     use ff::Field;
     use filecoin_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher};
+    use fr32::fr_into_bytes;
     use rand::SeedableRng;
     use rand_xorshift::XorShiftRng;
     use storage_proofs_core::{
         cache_key::CacheKey,
         drgraph::{BucketGraph, BASE_DEGREE},
-        fr32::fr_into_bytes,
         merkle::{BinaryMerkleTree, MerkleTreeTrait},
         table_tests,
         test_helper::setup_replica,
